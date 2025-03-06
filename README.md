@@ -9,7 +9,7 @@
 3. "복사하기" 버튼을 눌러 변환된 결과를 클립보드에 복사할 수 있습니다.  
 
 ## 📌 실행 방법
-- **https://yoojungvv.github.io/timecode/** 통해 직접 실행 가능  
+- **https://yoojungvv.github.io/timecode** 통해 직접 실행 가능  
 - 또는 `timeCode.html` 파일을 다운로드 후 **더블 클릭하여 실행**  
 
 ✅ **빠르고 간단한 변환이 필요한 경우 유용한 도구입니다!** 🚀  
