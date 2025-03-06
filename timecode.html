@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>타임코드 생성기</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        textarea {
+            width: 80%;
+            height: 150px;
+            margin-bottom: 10px;
+            padding: 10px;
+            font-size: 16px;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>타임코드 생성기</h2>
+    
+    <!-- 입력창 -->
+    <textarea id="inputText" placeholder="숫자 8자리를 입력하세요(여러 줄 가능)" oninput="convertText()"></textarea><br>
+
+    <!-- 출력창 -->
+    <textarea id="outputText" readonly placeholder="00:00~00:00 타임코드 형식으로 변환됩니다"></textarea><br>
+
+    <!-- 복사 버튼 -->
+    <button onclick="copyText()">복사하기</button>
+
+    <script>
+        function convertText() {
+            let input = document.getElementById("inputText").value;
+            
+            // 여러 줄을 배열로 변환 후 각 줄을 변환하여 다시 합치기
+            let output = input.split("\n").map(line => convertTimeFormat(line)).join("\n");
+
+            document.getElementById("outputText").value = output;
+        }
+
+        function convertTimeFormat(input) {
+            input = input.trim(); // 공백 제거
+            if (input.length !== 8 || isNaN(input)) {
+                return "8자리 숫자가 아닙니다";
+            }
+
+            let startHour = input.substring(0, 2);
+            let startMin = input.substring(2, 4);
+            let endHour = input.substring(4, 6);
+            let endMin = input.substring(6, 8);
+
+            return `${startHour}:${startMin}~${endHour}:${endMin}`;
+        }
+
+        function copyText() {
+            let output = document.getElementById("outputText");
+            navigator.clipboard.writeText(output.value);
+        }
+    </script>
+</body>
+</html>
